@@ -151,6 +151,34 @@ $("#myLineForm").submit(function(e) {
 
 
 
+function getColor(val){
+	console.log(val);
+	
+	if(val <= 67){
+		return '#99FF9C';
+	}else if(val <= 134){
+		return '#2AFF00'
+	}else if(val <= 200){
+		return '#2BD400'
+	}else if(val <= 267){
+		return '#F5F708'
+	}else if(val <= 334){
+		return '#FDD101'
+	}else if(val <= 400){
+		return '#FEA104'
+	}else if(val <= 467){
+		return '#FF6066'
+	}else if(val <= 534){
+		return '#FC0100'
+	}else if(val <= 600){
+		return '#950400'
+	}else{
+		return '#CE30FF'
+	}
+}
+
+
+
 /*-----------------------------------------------------------------------*/
 
 
@@ -160,9 +188,7 @@ $(document).ready(function() {
     $('.btn ').click(function() {
         $('#scatter').hide();
 
-        xmlData = [
-            ['Date', 'No2']
-        ];
+        xmlData = [];
         var station;
 
         var choice = $('#selectTime option:selected').text();
@@ -200,13 +226,14 @@ $(document).ready(function() {
         choice = $('#selectLocation option:selected').text();
 
         if (selection[0] === "null") {
-            xmlData.push(["", 0]);
+            xmlData.push(["", 0, null]);
         } else {
             for (i = 0; i < station.length; i++) {
                 attr = [];
                 if (selection[1] === station[i][3] && selection[2] === station[i][1].slice(-4)) {
                     attr.push(station[i][1]);
                     attr.push(station[i][4]);
+					attr.push('color: ' + getColor(parseInt(station[i][4])));
                     xmlData.push(attr);
                 }
             }
@@ -226,7 +253,11 @@ $(document).ready(function() {
             google.charts.setOnLoadCallback(drawChart);
 
             function drawChart() {
-                var data = google.visualization.arrayToDataTable(xmlData);
+                var data = new google.visualization.DataTable(xmlData);
+				data.addColumn('string', 'Time');
+                data.addColumn('number', choice + ' No2 Level');
+				data.addColumn({ type: 'string', role: 'style' });
+                data.addRows(xmlData);
 
                 var options = {
                     backgroundColor: '#EAEDF3',
@@ -251,6 +282,8 @@ $(document).ready(function() {
         }
     });
 });
+
+
 
 
 
@@ -317,16 +350,19 @@ $(document).ready(function() {
         var timeData = [];
 
         attr = [];
+		
 
         if (selection[0] === "null") {
-            timeData.push(["", 0]);
+            timeData.push(["", 0, null]);
         } else {
             for (i = 0; i < station.length; i++) {
                 attr = [];
                 if (day === station[i][1]) {
                     attr.push(station[i][3]);
                     attr.push(station[i][4]);
+					attr.push('color: ' + getColor(parseInt(station[i][4])));
                     timeData.push(attr);
+					console.log(timeData);
                 }
             }
         }
@@ -344,30 +380,28 @@ $(document).ready(function() {
 
         if (year_bool == true) {
             $('#linechart_material').show();
-            google.charts.load('current', { 'packages': ['line'] });
-            google.charts.setOnLoadCallback(drawChartLine);
+            google.charts.load('current', { 'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
 
-            function drawChartLine() {
+            function drawChart() {
 
-                data = new google.visualization.DataTable();
+                var data = new google.visualization.DataTable(timeData);
                 data.addColumn('string', 'Time');
                 data.addColumn('number', choice + ' No2 Level');
-
+				data.addColumn({ type: 'string', role: 'style' });
                 data.addRows(timeData);
-
+				
                 options = {
                     backgroundColor: '#EAEDF3',
-                    chart: {
-                        title: 'No2 levels for ' + choice + ' on ' + day,
-                    },
+                    title: 'No2 levels for ' + choice + ' on ' + day,
                     legend: { position: 'none' },
                 };
 
-                chart = new google.charts.Line(document.getElementById('linechart_material'));
+				var chart = new google.visualization.LineChart(document.getElementById('linechart_material'));
 
                 chart.clearChart();
 
-                chart.draw(data, google.charts.Line.convertOptions(options));
+                chart.draw(data, options);
             }
         } else {
             $('#linechart_material').hide();
