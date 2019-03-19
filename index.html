@@ -1,0 +1,49 @@
+<html>
+    <head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="index.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	</head>
+	<body>
+		<div class="banner">
+			<h1>UFCFR5-15-3 - Assignment - 2019</h1>
+		</div>
+		<div class="footer">
+			<p>&copy; Copyright 2019 Chris Tapply</p>
+		</div>
+		
+		<div id="main">
+			<div class="inner"><div id="chart_div"></div><h1 id="scatter">Please Fill Below form to view scatter graph</h1></div>
+			<div class="inner"><div id="linechart_material"></div><h1 id="line">Please Fill Below form to view line graph</h1></div>
+			<div class="inner_bottom">
+				<button class="open-button" onclick="openForm()">No2 Data for Time and Year</button>
+				<div class="form-popup" id="myForm">
+					<form class="form-container">
+						<h1>No2 Data for Time and Year</h1>
+						<select id="selectLocation"></select>
+						<select id="selectTime"></select>
+						<select id="selectYear"></select>
+						<button type="button" class="btn" >Submit</button>
+						<button type="button" class="btn_cancel" onclick="closeForm()">Close</button>	
+					</form>
+				</div>
+			</div>
+			<div class="inner_bottom">
+				<button class="open-button" onclick="openLineForm()">No2 levels for 24hr period</button>
+				<div class="form-popup-line" id="myLineForm">
+					<form class="form-container-line">
+						<h1>No2 levels for 24hr period</h1>
+						<select id="selectLocationLine"></select>
+						<select id="selectDayLine"></select>
+						<select id="selectMonthLine"></select>
+						<select id="selectYearLine"></select>
+						<button type="button" class="btnLine" >Submit</button>
+						<button type="button" class="btn_cancel_line" onclick="closeLineForm()">Close</button>	
+					</form>
+				</div>
+			</div>
+		<script src="script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+@import "reset";
+
+*{
+	box-sizing: border-box;
+}
+
+button{
+	border-radius: 3px;
+}
+
+/* button:hover { */
+	/* border-radius: 25px; */
+/* } */
+
+button:focus{
+	outline: none;
+	border-radius: 3px;
+} 
+
+button:active{
+	outline: none;
+}
+
+select{
+	background-color: #EAEDF3;
+	border: 1px inset;
+	border-color: #302D43;
+	display: inline-block;
+	text-decoration: none;
+	padding: 8px 10px 8px 10px;
+	text-align: left;
+	font-size: 10pt;
+	color: #302D43
+}
+
+button{
+	background-color: #EAEDF3;
+	border: 1px inset;
+	border-color: #302D43;
+	display: inline-block;
+	text-decoration: none;
+	padding: 8px 10px 8px 10px;
+	text-align: left;
+	font-size: 10pt;
+	color: #302D43
+}
+
+#scatter{
+	text-align: center;
+	vertical-align: middle;
+	color: #302D43
+}
+
+select{
+	border-radius: 3px;
+}
+
+select:active{
+	outline: none;
+}
+
+select:focus{
+	outline:none;
+}
+
+option{
+	border-radius: 3px;
+}
+
+option:active{
+	outline: none;
+}
+
+option:focus{
+	outline:none;
+}
+
+input{
+	padding: 8px 10px 8px 10px;
+	border: 0.2px inset;
+	border-color: #302D43;
+	outline: none;
+	text-align: left;
+	font-size: 10pt;
+	border-radius: 5px;
+}
+
+
+
+* { margin:0; padding:0; }
+
+ /* * {border: dashed; border-color: white;}  */
+
+//EAEDF3
+//92CF48
+//302D43
+//282639
+
+body{
+	font-family: 'Roboto', sans-serif;
+	background: #F4F6F9;
+}
+
+/*div{
+	border-width: 1px;
+	border-style: dashed;
+	border-color: white;
+}*/
+
+.banner{
+	top: 0;
+	left: 0;
+	position: fixed;
+	width:100%;
+	height: 100%;
+	height: 100px;
+	background-color: #302D43;
+	padding-top: 10px;
+	padding-left: 20px;
+}
+
+.banner h1{
+	color: white
+}
+
+.banner p{
+	width: 100%;
+	border: none;
+	color: White;
+	padding: 8px 10px 8px 18px;
+	outline: none;
+	text-align: right;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+.currentUser{
+	top: 0;
+	right: 0;
+	position: fixed;
+	width:20%;
+	height: 100%;
+	height: 100px;
+	background-color: #302D43;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.footer{
+	bottom: 0;
+	left: 0;
+	color: White;
+	position: fixed;
+	width: 100%;
+	height: 50px;
+	background-color: #302D43;
+	padding-top: 15px;
+	padding-left: 20px;
+	z-index: 1;
+}
+
+
+
+
+#main{
+	margin-top: 100px;
+	margin-bottom: 50px;
+	
+	left: 0;
+	width: 100%;
+	top: 0;
+	bottom: 0;
+	background-color: #EAEDF3;
+	position: fixed;
+}
+
+#chart_div{
+	padding : 2px 2px 2px 2px;
+	width: 100%;
+	height: 100%;
+}
+
+#linechart_material{
+	padding : 2px 2px 2px 2px;
+	width: 100%;
+	height: 100%;
+}
+
+.dropdown-menu{
+	outline: none;
+	background-color: #EAEDF3;
+}
+
+.dropdown-submenu button{
+	width : 100%;
+	border: none;
+	outline: none;
+}
+
+.inner_bottom{
+	border: 0.2px inset;
+	border-color: #302D43;
+	word-wrap: break-word;
+	padding-top: 20px;
+	padding-left: 50px;
+	padding-right: 20px;
+	float: left;
+	height: 50%;
+	width: 50%;
+	box-sizing: border-box;
+}
+
+.inner_bottom button{
+	background-color: #EAEDF3;
+	border: 1px inset;
+	border-color: #302D43;
+	display: inline-block;
+	text-decoration: none;
+	padding: 8px 10px 8px 10px;
+	text-align: left;
+	font-size: 10pt;
+	color: #302D43
+}
+
+.inner{
+	border: 0.2px inset;
+	border-color: #302D43;
+	word-wrap: break-word;
+	padding-left: 20px;
+	padding-right: 20px;
+	float: left;
+	height: 50%;
+	width: 50%;
+	box-sizing: border-box;
+}
+
+.inner input{
+	padding: 8px 10px 8px 10px;
+	outline: none;
+	text-align: left;
+	font-size: 10pt;
+}
+
+.inner button{
+	background-color: #EAEDF3;
+	border: 1px inset;
+	border-color: #302D43;
+	display: inline-block;
+	text-decoration: none;
+	padding: 8px 10px 8px 10px;
+	text-align: left;
+	font-size: 10pt;
+	color: #302D43
+}
+
+.inner button:active{
+	outline: none;
+	background-color: #302D43;
+	border-color: none;
+	color: #EAEDF3
+}
+
+
+/*FORM*/
+
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  border: none;/*1px solid #302D43;*/
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 500px;
+  padding: 10px;
+  background-color: #EAEDF3;
+}
+
+.form-popup-line {
+  display: none;
+  position: fixed;
+  border: none;/*1px solid #302D43;*/
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container-line {
+  max-width: 500px;
+  padding: 10px;
+  background-color: #EAEDF3;
+}
+
+
+
+
+
+	
