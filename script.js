@@ -103,6 +103,7 @@ create_options_list(location_, "selectLocationLine");
 create_options_list(day_, "selectDayLine");
 create_options_list(month_, "selectMonthLine");
 create_options_list(year_, "selectYearLine");
+create_options_list(location_, "selectLocationCalender");
 
 
 
@@ -126,6 +127,12 @@ function create_options_list(list, id_var) {
 
 
 function openForm() {
+	$('#graph').hide();
+	$('#calender_chart').hide();
+	$('#linechart_material').hide();
+	$('#chart_div').hide();
+	closeLineForm();
+	closeCalenderForm();
     document.getElementById("myForm").style.display = "block";
 }
 
@@ -138,6 +145,12 @@ $("#myForm").submit(function(e) {
 });
 
 function openLineForm() {
+	$('#graph').hide();
+	$('#calender_chart').hide();
+	$('#chart_div').hide();
+	$('#linechart_material').hide();
+	closeForm();
+	closeCalenderForm();
     document.getElementById("myLineForm").style.display = "block";
 }
 
@@ -145,9 +158,27 @@ function closeLineForm() {
     document.getElementById("myLineForm").style.display = "none";
 }
 
+function openCalenderForm() {
+	$('#graph').hide();
+	$('#chart_div').hide();
+	$('#linechart_material').hide();
+	$('#calender_chart').hide();
+	closeForm();
+	closeLineForm();
+    document.getElementById("myCalenderForm").style.display = "block";
+}
+
+function closeCalenderForm() {
+    document.getElementById("myCalenderForm").style.display = "none";
+}
+	
+
 $("#myLineForm").submit(function(e) {
     e.preventDefault();
 });
+
+
+
 
 
 
@@ -186,8 +217,9 @@ function getColor(val){
 
 $(document).ready(function() {
     $('.btn ').click(function() {
-        $('#scatter').hide();
-
+		closeForm();
+        $('#chart_div').show();
+		
         xmlData = [];
         var station;
 
@@ -277,8 +309,8 @@ $(document).ready(function() {
             }
         } else {
             $('#chart_div').hide();
-            $('#scatter').show();
-            $('#scatter').text("Unfortunately there is No data for that year");
+            $('#graph').show();
+            $('#graph').text("Unfortunately there is No data for that year");
         }
     });
 });
@@ -291,7 +323,8 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('.btnLine ').click(function() {
-        $('#line').hide();
+		closeLineForm();
+        $('#linechart_material').show();       
 
         xmlData = [
             ['Date', 'No2']
@@ -405,8 +438,96 @@ $(document).ready(function() {
             }
         } else {
             $('#linechart_material').hide();
-            $('#line').show();
-            $('#line').text("Either there is No data for that day or you've chosen an invalid date");
+            $('#graph').show();
+            $('#graph').text("Either there is No data for that day or you've chosen an invalid date");
         }
     });
 });
+
+
+$(document).ready(function() {
+    $('.btnCalender ').click(function() {
+		closeCalenderForm();
+	    $('#calender_chart').show();
+		
+		
+		var station;
+		var choice = $('#selectLocationCalender option:selected').val();
+		
+		choice = parseInt(choice);
+		
+		switch (choice) {
+			case 0:
+				station = bris.slice();
+				break;
+			case 1:
+				station = rupe.slice();
+				break;
+			case 2:
+				station = fish.slice();
+				break;
+			case 3:
+				station = newf.slice();
+				break;
+			case 4:
+				station = pars.slice();
+				break;
+			case 5:
+				station = wells.slice();
+				break;
+        }
+		
+		console.log(choice);
+		console.log(station);
+		
+		var year;
+		var day = station[0][1].slice(0, 2);
+		var month;
+		var no2 = station[0][4];
+		
+		station.sort((a, b) => a[0] - b[0] || a[4] - b[4]);
+		console.log(bris);
+		console.log(station);
+		
+		var calenderData = [];
+		
+		
+		for (i = 0; i < station.length; i++) {
+			if(day != station[i][1].slice(0, 2)){
+				year = station[i - 1][1].slice(-4)
+				day = station[i - 1][1].slice(0, 2)
+				month = station[i - 1][1].slice(3, 5)
+				attr = [];
+				attr.push(new Date(year, month, day));
+				attr.push(station[i - 1][4]);
+				calenderData.push(attr);
+			}
+			
+		}
+		
+		  choice = $('#selectLocationCalender option:selected').text();
+		
+		
+		google.charts.load("current", {packages:["calendar"]});
+		google.charts.setOnLoadCallback(drawChart);
+
+	   function drawChart() {
+		   var dataTable = new google.visualization.DataTable();
+		   dataTable.addColumn({ type: 'date', id: 'Date' });
+		   dataTable.addColumn({ type: 'number', id: 'Max No2' });
+		   dataTable.addRows(calenderData);
+
+		   var chart = new google.visualization.Calendar(document.getElementById('calender_chart'));
+
+		   var options = {
+			 title: "No2 max levels Calender for " + choice,
+			 height: 700,
+			 colorAxis : {values: [67, 134,200,267,334,400,467,534,600], colors: ['#99FF9C', '#2AFF00' , '#2BD400', '#F5F708', '#FDD101', '#FEA104', '#FF6066', '#FC0100', '#950400']},
+		   };
+
+		   chart.draw(dataTable, options);
+	   }
+	});		
+});
+
+

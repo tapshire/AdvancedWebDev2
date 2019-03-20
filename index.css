@@ -121,7 +121,8 @@ body{
 }
 
 .banner h1{
-	color: white
+	color: white;
+	float: left;
 }
 
 .banner p{
@@ -133,6 +134,10 @@ body{
 	text-align: right;
 	font-size: 12pt;
 	font-weight: bold;
+}
+
+.banner button{
+	float: right;
 }
 
 .currentUser{
@@ -276,7 +281,7 @@ body{
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 500px;
+  max-width: 700px;
   padding: 10px;
   background-color: #EAEDF3;
 }
@@ -290,7 +295,7 @@ body{
 
 /* Add styles to the form container */
 .form-container-line {
-  max-width: 500px;
+  max-width: 700px;
   padding: 10px;
   background-color: #EAEDF3;
 }
