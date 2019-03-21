@@ -498,7 +498,7 @@ $(document).ready(function() {
 				day = station[i - 1][1].slice(0, 2)
 				month = station[i - 1][1].slice(3, 5)
 				attr = [];
-				attr.push(new Date(year, month, day));
+				attr.push(new Date(year, parseInt(month) - 1, day));
 				attr.push(station[i - 1][4]);
 				calenderData.push(attr);
 			}
@@ -522,7 +522,8 @@ $(document).ready(function() {
 		   var options = {
 			 title: "No2 max levels Calender for " + choice,
 			 height: 700,
-			 colorAxis : {values: [67, 134,200,267,334,400,467,534,600], colors: ['#99FF9C', '#2AFF00' , '#2BD400', '#F5F708', '#FDD101', '#FEA104', '#FF6066', '#FC0100', '#950400']},
+			 legend: 'right',
+			 colorAxis : {values: [0, 67 , 134 ,200 ,267 ,334 ,400 ,467 ,534 ,600, Number.MAX_VALUE], colors: ['white', '#99FF9C', '#2AFF00' , '#2BD400', '#F5F708', '#FDD101', '#FEA104', '#FF6066', '#FC0100', '#950400', '#CE30FF']},
 		   };
 
 		   chart.draw(dataTable, options);
