@@ -28,7 +28,7 @@ $('#linechart_material').hide();
 readFile("brislington_no2.xml", bris);
 readFile("fishponds_no2.xml", fish);
 readFile("newfoundland_way_no2.xml", newf);
-readFile("brupert_st_no2.xml", rupe);
+readFile("rupert_st_no2.xml", rupe);
 readFile("parson_st_no2.xml", pars);
 readFile("wells_rd_no2.xml", wells);
 
