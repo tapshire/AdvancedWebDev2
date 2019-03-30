@@ -6,10 +6,11 @@ flush();
 csvToXml('brislington.xml', 3);
 csvToXml('fishponds.xml', 6);
 csvToXml('parson_st.xml', 8);
-csvToXml('brupert_st.xml', 9);
+csvToXml('rupert_st.xml', 9);
 csvToXml('wells_rd.xml', 10);
 csvToXml('newfoundland_way.xml', 11);
 
+//Function to put data for each location into XML from CSV
 function csvToXml($fName, $fVal){
 	if (($handle = fopen("air_quality.csv", "r")) !== FALSE) {
 		

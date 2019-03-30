@@ -1,3 +1,5 @@
+
+//variables
 var final_attr_list = [];
 var y;
 var txt = "";
@@ -22,6 +24,7 @@ $('#chart_div').hide();
 $('#linechart_material').hide();
 
 
+//load all data for each station
 readFile("brislington_no2.xml", bris);
 readFile("fishponds_no2.xml", fish);
 readFile("newfoundland_way_no2.xml", newf);
@@ -30,6 +33,7 @@ readFile("parson_st_no2.xml", pars);
 readFile("wells_rd_no2.xml", wells);
 
 
+//Function to read in file and sort all data in to date and time order for graph plots
 function readFile(file, station_list) {
     var request = new XMLHttpRequest();
     request.open("GET", file, false);
@@ -90,12 +94,14 @@ var month_ = ["January", "February", "March", "April", "May", "June", "July", "A
 
 var day_ = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
 
+//loop to generate the years from all data to create option selection
 for (i = 0; i < final_attr_list.length; i++) {
     if (final_attr_list[i][1].slice(-4) !== year_[year_.length - 1]) {
         year_.push(final_attr_list[i][1].slice(-4));
     }
 }
 
+//create selection options 
 create_options_list(location_, "selectLocation");
 create_options_list(time_, 'selectTime');
 create_options_list(year_, 'selectYear');
@@ -106,7 +112,7 @@ create_options_list(year_, "selectYearLine");
 create_options_list(location_, "selectLocationCalender");
 
 
-
+//function to dynamically generate select options based on data from XML files
 function create_options_list(list, id_var) {
     //Create and append select list
     var selectList = document.getElementById(id_var);
@@ -181,7 +187,7 @@ $("#myLineForm").submit(function(e) {
 
 
 
-
+//Function to get color dependent on risk levels
 function getColor(val){
 	console.log(val);
 	
@@ -445,6 +451,8 @@ $(document).ready(function() {
 });
 
 
+
+// On click build calender chart 
 $(document).ready(function() {
     $('.btnCalender ').click(function() {
 		closeCalenderForm();

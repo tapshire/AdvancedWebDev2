@@ -3,16 +3,17 @@
 xmlNo2('brislington');
 xmlNo2('fishponds');
 xmlNo2('parson_st');
-xmlNo2('brupert_st');
+xmlNo2('rupert_st');
 xmlNo2('wells_rd');
 xmlNo2('newfoundland_way');
 
 
-
+//Function to read in saved XML data
 function xmlNo2($fName){
 	$reader = new XMLReader();
 	$reader->open($fName . '.xml');
 	
+	//collect location, latitude and longitude 
 	while($reader->read()){
 		
 		if($reader->name == 'desc'){
@@ -27,14 +28,17 @@ function xmlNo2($fName){
 		}
 	}
 	
+	//Format location, longitude and latitude for new XML
 	$out = '<data type="nitrogen dioxide">';
 	$loc = '<location id="' . $d . '" lat="' . $lat . '" long="' . $long . '">';
 	$out .= $loc;
 	#echo $out;
 	
+	//close reader and re-open to start from beginning to catch all data
 	$reader->close();
 	$reader->open($fName . '.xml');
 	
+	//Collect All rows of date, time and no2 in XML file and format for new XML
 	while($reader->read()){
 		if($reader->name == 'date'){
 			$dat = $reader->getAttribute('val');
@@ -52,7 +56,9 @@ function xmlNo2($fName){
 	
 	
 	$out .= '</location></data>';
-			
+	
+	
+	//Write XML to file 		
 	$writer = new XMLWriter();
 	$writer->openURI($fName . '_no2.xml');
 	$writer->startDocument("1.0");
