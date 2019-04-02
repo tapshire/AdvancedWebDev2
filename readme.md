@@ -98,5 +98,7 @@ Individual files for processing and visual representation:<br>
 [HTML view](https://raw.githubusercontent.com/tapshire/AdvancedWebDev2/master/index.html)<br>
 [CSS styling](https://raw.githubusercontent.com/tapshire/AdvancedWebDev2/master/index.css)<br>
 
+Run this file in xammp. Index.php including php_script and no2_script:<br>
+[php web view](https://raw.githubusercontent.com/tapshire/AdvancedWebDev2/master/index.php)<br>
 
 
